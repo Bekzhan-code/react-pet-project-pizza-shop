@@ -8,7 +8,6 @@ const Categories = React.memo(function Categories({ items, onClickItem }) {
     onClickItem(index);
   };
 
-  console.log("RERENDERED");
   return (
     <nav className="categories">
       <ul className="flex">

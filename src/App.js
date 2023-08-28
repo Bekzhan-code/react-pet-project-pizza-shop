@@ -4,6 +4,8 @@ import { Routes, Route } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 
+import { fetchPizzas } from "./redux/actions/pizzas";
+
 import { setPizzas } from "./redux/actions/pizzas";
 
 import "./scss/style.scss";
@@ -13,12 +15,6 @@ import { Home, Cart } from "./pages";
 
 function App() {
   const dispatch = useDispatch();
-
-  // window.test = () => {
-  //   fetch("http://localhost:3000/db.json")
-  //     .then((res) => res.json())
-  //     .then((json) => dispatch(setPizzas(json.pizzas)));
-  // };
 
   React.useEffect(() => {
     fetch("http://localhost:3001/pizzas")
