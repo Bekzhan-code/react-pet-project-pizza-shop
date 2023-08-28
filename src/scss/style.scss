@@ -1,0 +1,403 @@
+@import url("https://fonts.cdnfonts.com/css/proxima-nova-condensed");
+
+/* || RESET */
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+/* || VARIABLES */
+
+:root {
+  /* FONTS */
+  --FF: "Proxima Nova Condensed", sans-serif;
+  --BUTTON-FS: 1rem;
+  --PIZZA-NAME-FS: 20px;
+  --PIZZA-PRICE-FS: 22px;
+
+  /* COLORS */
+  --BLACK: #232323;
+  --BGCOLOR: #ffdf8c;
+  --BODY-BGCOLOR: #fff;
+  --ORANGE: #fe5f1e;
+  --GRAY: #f6f6f6;
+  --HOVER-COLOR: hsla(17, 99%, 56%, 0.145);
+
+  /* STANDARD WIDTH */
+  --CONTAINER-WIDTH: 90%;
+
+  /* STANDARD PADDING */
+  --CATEGORIES-PD: 13px 25px;
+  --PIZZA-PROPS-PD: 10px 0;
+  // --PIZZA-PROPS-TYPE-PD: 10px 30px;
+  // --PIZZA-PROPS-SIZE-PD: 10px 22px;
+
+  /* BORDERS */
+  --BODY-BORDER-RADIUS: 10px;
+  --PIZZA-PROPS-BOX-RADIUS: 10px;
+  --SORT-OPTIONS-BOX-RADIUS: 10px;
+  --PIZZA-PROPS-RADIUS: 5px;
+  --BORDER-RADIUS: 30px;
+
+  /* TRANSITIONS */
+  --DURATION: 0.15s;
+}
+
+/* || UTILITY CLASSES */
+
+.container {
+  padding-left: 67px;
+  padding-right: 49px;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  text-align: center;
+}
+
+/* || GENERAL STYLES */
+
+html {
+  font-family: var(--FF);
+  background-color: var(--BGCOLOR);
+}
+
+body {
+  padding: 2vw 0;
+}
+
+.wrapper {
+  background-color: var(--BODY-BGCOLOR);
+  color: var(--BLACK);
+  min-height: 100vh;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-bottom: 96px;
+  border-radius: var(--BODY-BORDER-RADIUS);
+}
+
+.content {
+  position: relative;
+
+  &__wrapper {
+    h1 {
+      margin: 32px 0;
+    }
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    row-gap: 65px;
+    column-gap: 35px;
+  }
+
+  &__top {
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+}
+
+p {
+  line-height: 1.6rem;
+}
+
+a {
+  color: var(--BLACK);
+  text-decoration: none;
+}
+
+li {
+  cursor: pointer;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 800;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* || HEADER */
+
+.header {
+  border-bottom: 1px solid var(--GRAY);
+  padding: 40px 0;
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      margin-right: 17px;
+    }
+  }
+}
+
+/* || BUTTONS */
+
+.btn {
+  border-radius: var(--BORDER-RADIUS);
+  border: none;
+  padding: 15px;
+  font-size: var(--BUTTON-FS);
+  font-weight: 700;
+  color: #fff;
+  background: var(--ORANGE);
+  cursor: pointer;
+  transition: background-color var(--DURATION) ease-in-out,
+    border-color var(--DURATION) ease-in-out;
+
+  span {
+    transition: all var(--DURATION) ease-in-out;
+  }
+
+  &:hover {
+    background-color: darken(#fe5f1e, 8%); //DARKEN-VAR
+  }
+
+  &:active {
+    background-color: darken(#fe5f1e, 12%);
+    transform: translateY(1px);
+  }
+
+  &__delimiter {
+    width: 1px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.25);
+  }
+
+  &__add-text {
+    margin: 0 7px;
+  }
+
+  &__add-amount {
+    display: none;
+  }
+
+  &--cart {
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 150px;
+  }
+
+  &--outline {
+    border: 1px solid var(--ORANGE);
+    background-color: #fff;
+    color: var(--ORANGE);
+
+    &:hover {
+      background-color: var(--ORANGE);
+      color: #fff;
+
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+
+    .btn__add-amount {
+      display: inline-block;
+      background-color: var(--ORANGE);
+      color: #fff;
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      line-height: 22px;
+      font-size: 13px;
+    }
+  }
+}
+
+/* || CATEGORIES */
+
+.categories {
+  ul {
+    li {
+      padding: var(--CATEGORIES-PD);
+      background-color: var(--GRAY);
+      border-radius: var(--BORDER-RADIUS);
+      margin-right: 10px;
+      font-weight: 700;
+
+      &:hover {
+        background-color: darken(#f9f9f9, 2%);
+      }
+
+      &:active {
+        background-color: darken(#f9f9f9, 5%);
+      }
+
+      &.active {
+        background-color: var(--BLACK);
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* || SORT POPUP */
+
+.sort {
+  align-items: center;
+
+  &__arrow-icon,
+  &__text {
+    margin-right: 8px;
+  }
+
+  &__arrow-icon {
+    transform: rotate(180deg);
+
+    &.rotated {
+      transform: rotate(0);
+    }
+  }
+
+  &__text {
+    font-weight: 700;
+  }
+
+  &__selected-option {
+    font-weight: 400;
+    color: var(--ORANGE);
+    cursor: pointer;
+  }
+
+  &__options {
+    position: absolute;
+    top: 35px;
+    left: 1190px;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: var(--SORT-OPTIONS-BOX-RADIUS);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    border: none;
+    z-index: 2; // DON'T WORK
+
+    ul {
+      padding-top: 13px;
+      min-width: 132px;
+
+      li {
+        padding: 10px 20px;
+
+        &:hover {
+          background-color: var(--HOVER-COLOR);
+          color: var(--ORANGE);
+          font-weight: 700;
+        }
+
+        &:last-child {
+          border-bottom-left-radius: var(--SORT-OPTIONS-BOX-RADIUS);
+          border-bottom-right-radius: var(--SORT-OPTIONS-BOX-RADIUS);
+        }
+      }
+    }
+  }
+}
+
+/* || PIZZA BLOCK */
+
+.pizza {
+  display: inline-block;
+  &__img {
+    img {
+      margin: 0 auto;
+    }
+
+    figcaption {
+      margin-top: 11px;
+      margin-bottom: 22px;
+      font-size: var(--PIZZA-NAME-FS);
+      font-weight: 800;
+    }
+  }
+
+  &__properties {
+    padding: 7px 5px;
+    margin-bottom: 17px;
+    border-radius: var(--PIZZA-PROPS-BOX-RADIUS);
+    background-color: var(--GRAY);
+
+    ul {
+      display: flex;
+
+      li {
+        margin-right: 6px;
+        border-radius: var(--PIZZA-PROPS-RADIUS);
+        padding: var(--PIZZA-PROPS-PD);
+        text-align: center;
+        font-weight: 700;
+      }
+    }
+
+    :first-child {
+      margin-bottom: 7px;
+
+      li {
+        min-width: 132px;
+      }
+    }
+
+    :last-child {
+      li {
+        min-width: 86px;
+      }
+    }
+  }
+
+  &--type-active,
+  &--size-active {
+    background-color: #fff;
+  }
+
+  &--type-disabled,
+  &--size-disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  &__add {
+    justify-content: space-between;
+    align-items: center;
+
+    p {
+      font-size: var(--PIZZA-PRICE-FS);
+      font-weight: 700;
+    }
+
+    button {
+      max-width: 155px;
+      min-width: 132px;
+    }
+  }
+}
