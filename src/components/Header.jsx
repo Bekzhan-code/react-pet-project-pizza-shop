@@ -8,7 +8,7 @@ import Button from "./Button";
 function Header() {
   return (
     <header className="header">
-      <div className="container">
+      <div className="container flex">
         <Link className="header__title flex" to="/">
           <img height="38" width="38" src={logoSvgUrl} alt="Header Logo" />
           <div>

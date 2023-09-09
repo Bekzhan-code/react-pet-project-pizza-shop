@@ -63,16 +63,14 @@ function Home() {
         />
       </section>
 
-      <div className="content__wrapper">
-        <h1>Все пиццы</h1>
-        <section className="content__items">
-          {isLoaded
-            ? items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)
-            : Array(10)
-                .fill(0)
-                .map((_, index) => <PizzaLoadingBlock key={index} />)}
-        </section>
-      </div>
+      <h1 className="content__title">Все пиццы</h1>
+      <section className="content__items">
+        {isLoaded
+          ? items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)
+          : Array(10)
+              .fill(0)
+              .map((_, index) => <PizzaLoadingBlock key={index} />)}
+      </section>
     </main>
   );
 }
