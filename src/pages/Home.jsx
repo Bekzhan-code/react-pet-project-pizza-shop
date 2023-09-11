@@ -1,9 +1,8 @@
 import React from "react";
-
 import { useSelector, useDispatch } from "react-redux";
 
 import { setCategory, setSortBy } from "../redux/actions/filters";
-import { fetchPizzas } from "../redux/actions/pizzas";
+import { addPizzaToCart } from "../redux/actions/cart";
 
 import {
   Categories,
@@ -34,6 +33,9 @@ function Home() {
   const { category, sortBy } = useSelector(
     ({ filtersReducer }) => filtersReducer
   );
+  const { pizzaAmountItems } = useSelector(({ cartReducer }) => ({
+    pizzaAmountItems: cartReducer.pizzaAmount,
+  }));
 
   const onSelectCategory = React.useCallback((index) => {
     dispatch(setCategory(index));
@@ -44,9 +46,9 @@ function Home() {
   }, []);
   // useCallback() чтобы функция onSelectCategory создалась единожды и при новом рендоре не создавалась новая функция
 
-  React.useEffect(() => {
-    dispatch(fetchPizzas(category, sortBy));
-  }, [category, sortBy]);
+  const onAddPizzaToCart = (pizzaObj) => {
+    dispatch(addPizzaToCart(pizzaObj));
+  };
 
   return (
     <main className="content container">
@@ -66,7 +68,14 @@ function Home() {
       <h1 className="content__title">Все пиццы</h1>
       <section className="content__items">
         {isLoaded
-          ? items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)
+          ? items.map((pizza) => (
+              <PizzaBlock
+                key={pizza.id}
+                addedAmount={pizzaAmountItems[pizza.id]}
+                onClickAddPizza={onAddPizzaToCart}
+                {...pizza}
+              />
+            ))
           : Array(10)
               .fill(0)
               .map((_, index) => <PizzaLoadingBlock key={index} />)}

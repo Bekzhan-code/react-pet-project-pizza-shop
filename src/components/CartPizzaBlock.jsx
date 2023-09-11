@@ -1,24 +1,49 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import Button from "./Button";
 
-function CartPizzaBlock() {
+function CartPizzaBlock({
+  id,
+  name,
+  imageUrl,
+  type,
+  size,
+  pizzaAmount,
+  pizzaPrice,
+  onClickMinusPizza,
+  onClickPlusPizza,
+  onClickRemoveCartPizza,
+}) {
+  const onMinusPizza = () => {
+    const cartPizzaId = `${id}-${type}-${size}`;
+    onClickMinusPizza(cartPizzaId);
+  };
+
+  const onPlusPizza = () => {
+    const cartPizzaId = `${id}-${type}-${size}`;
+    onClickPlusPizza(cartPizzaId);
+  };
+
+  const onRemovePizza = () => {
+    const cartPizzaId = `${id}-${type}-${size}`;
+    onClickRemoveCartPizza(cartPizzaId);
+  };
+
   return (
     <div className="cart__item flex">
       <div className="cart__item-info flex">
-        <img
-          width={80}
-          height={80}
-          src="https://dodopizza.azureedge.net/static/Img/Products/f035c7f46c0844069722f2bb3ee9f113_584x584.jpeg"
-          alt="Cart pizza item"
-        />
+        <img width={80} height={80} src={imageUrl} alt="Cart pizza item" />
         <div>
-          <h2>Сырный цепленок</h2>
-          <p>тонкое тесто, 26 см.</p>
+          <h2>{name}</h2>
+          <p>
+            {type} тесто, {size} см.
+          </p>
         </div>
       </div>
       <div className="cart__item-settings flex">
         <div className="cart__item-amount flex">
-          <Button className="btn--circle flex" outline>
+          <Button className="btn--circle flex" onClick={onMinusPizza} outline>
             <svg
               width="10"
               height="2"
@@ -32,8 +57,8 @@ function CartPizzaBlock() {
               />
             </svg>
           </Button>
-          <b>2</b>
-          <Button className="btn--circle flex" outline>
+          <b>{pizzaAmount}</b>
+          <Button className="btn--circle flex" onClick={onPlusPizza} outline>
             <svg
               width="10"
               height="10"
@@ -48,8 +73,12 @@ function CartPizzaBlock() {
             </svg>
           </Button>
         </div>
-        <p className="cart__item-price">770 &#8381;</p>
-        <Button className="btn--circle btn--remove" outline>
+        <p className="cart__item-price">{pizzaPrice} &#8381;</p>
+        <Button
+          className="btn--circle btn--remove"
+          onClick={onRemovePizza}
+          outline
+        >
           <svg
             width="10"
             height="9"
@@ -67,5 +96,14 @@ function CartPizzaBlock() {
     </div>
   );
 }
+
+CartPizzaBlock.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  pizzaAmount: PropTypes.number.isRequired,
+  pizzaPrice: PropTypes.number.isRequired,
+};
 
 export default CartPizzaBlock;

@@ -50,6 +50,8 @@ button {
   /* STANDARD PADDING */
   --CATEGORIES-PD: 13px 25px;
   --PIZZA-PROPS-PD: 10px 0;
+  --CART-PIZZA-BTN-PD: 18px 31px;
+  --CART-EMPTY-BTN-PD: 14px 35px;
 
   /* BORDERS */
   --BODY-BORDER-RADIUS: 10px;
@@ -120,6 +122,10 @@ html {
 }
 
 .cart {
+  p {
+    font-size: 22px;
+  }
+
   &__top {
     align-items: center;
     margin-bottom: 30px;
@@ -138,6 +144,10 @@ html {
     svg {
       margin-right: 7px;
     }
+
+    p {
+      font-size: 16px;
+    }
   }
 
   &__item {
@@ -149,6 +159,10 @@ html {
 
       img {
         margin-right: 15px;
+      }
+
+      p {
+        font-size: 18px;
       }
     }
 
@@ -167,6 +181,34 @@ html {
       b {
         margin: 0 12px;
       }
+    }
+  }
+
+  &__info {
+    margin-bottom: 40px;
+    span {
+      color: var(--ORANGE);
+      font-weight: var(--PRICE-FW);
+    }
+  }
+
+  &--empty {
+    flex-direction: column;
+    align-items: center;
+
+    &-title {
+      margin-bottom: 10px;
+      span {
+        font-size: normal;
+      }
+    }
+
+    &-descr {
+      margin-bottom: 47px;
+    }
+
+    &-img {
+      margin-bottom: 74px;
     }
   }
 }
@@ -229,10 +271,15 @@ ul {
 
   &:hover {
     background-color: darken(#fe5f1e, 8%); //DARKEN-VAR
+
+    .btn__add-amount {
+      background-color: #fff;
+      color: var(--ORANGE);
+    }
   }
 
   &:active {
-    background-color: darken(#fe5f1e, 12%);
+    background-color: darken(#fe5f1e, 12%); //DARKEN-VAR
     transform: translateY(1px);
   }
 
@@ -247,7 +294,19 @@ ul {
   }
 
   &__add-amount {
-    display: none;
+    display: inline-block;
+    background-color: var(--ORANGE);
+    color: #fff;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    line-height: 22px;
+    font-size: 13px;
+  }
+
+  &--add {
+    max-width: 155px;
+    min-width: 132px;
   }
 
   &--cart {
@@ -287,19 +346,39 @@ ul {
     border-color: var(--CART-ITEM-REMOVE-COLOR);
 
     &:hover {
-      border-color: var(--ORANGE);
+      border-color: var(--BLACK);
+      background-color: var(--BLACK);
     }
   }
 
-  .btn__add-amount {
-    display: inline-block;
-    background-color: var(--ORANGE);
-    color: #fff;
-    height: 22px;
-    width: 22px;
-    border-radius: 50%;
-    line-height: 22px;
-    font-size: 13px;
+  &--back {
+    align-items: center;
+    border-color: #d7d7d7;
+    color: #d7d7d7;
+    font-weight: 400;
+
+    svg {
+      margin-right: 7px;
+    }
+  }
+
+  &--payment,
+  &--back {
+    padding: var(--CART-PIZZA-BTN-PD);
+  }
+
+  &--cart-empty {
+    background-color: var(--BLACK);
+    padding: var(--CART-EMPTY-BTN-PD);
+
+    &:hover {
+      background-color: darken(#232323, 8%); //DARKEN-VAR
+    }
+
+    &:active {
+      background-color: darken(#232323, 12%); //DARKEN-VAR
+      transform: translateY(1px);
+    }
   }
 }
 
@@ -458,11 +537,6 @@ ul {
     p {
       font-size: var(--PIZZA-PRICE-FS);
       font-weight: var(--PRICE-FW);
-    }
-
-    button {
-      max-width: 155px;
-      min-width: 132px;
     }
   }
 }
